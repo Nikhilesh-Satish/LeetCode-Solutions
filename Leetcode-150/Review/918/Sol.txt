@@ -1,0 +1,31 @@
+Intuition
+
+The first thought to solve a problem which includes subarray sum, Kadane's algorithm comes to mind. Here, we have to make slight modifications to Kadane's algorithm.
+
+
+
+Approach
+
+Lets divide the problem into 2 phases. The first phase is applying Kadane's algorithm on the array normally without considering the circular property of the array. Here, we perform an additional operation of finding the total sum of all elements of the array. This will be useful in the next phase.
+
+Now that we have a circular array, we know we can wrap around. On closer inspection, we find that for the sum to be maximum in a circular subarray, we just need to remove the subarray with the minimal sum. In other words, we are removing the part of the array that decreases overall sum of the entire subarray. This way we take into account only the maximum part.
+
+So, we here apply Kadane's algorithm to find the minimum sum of the entire array and then subtract that from the total sum of the array we calculated previously.
+
+Here, however there is another edge case. The edge case is that if we have all negative values in the array, then we have a problem. Because, then total-minSum=0. So, we just return the maxSum we found from the original Kadane's algorithm.
+
+Otherwise, we return the maximum between the sum we found by omitting the minimising part of the array and the maximum sum we found by performing the original Kadane's algorithm.
+
+
+
+
+
+Complexity
+
+    Time complexity:
+
+O(N)
+
+    Space complexity:
+
+O(1)
